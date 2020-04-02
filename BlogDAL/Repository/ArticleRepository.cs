@@ -1,41 +1,46 @@
 ﻿using BlogDAL.Entities;
 using BlogDAL.Interface;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Text;
+using BlogDAL.Context;
+using System.Linq;
 
 namespace BlogDAL.Repository
 {
     public class ArticleRepository : IRepository<Article>
     {
-        void IRepository<Article>.Create(Article item)
+        private BlogContext db;
+        public ArticleRepository(BlogContext context)
         {
-            throw new NotImplementedException();
+            this.db = context;
         }
-
-        void IRepository<Article>.Delete(int id)
+        public IEnumerable<Article> GetAll()
         {
-            throw new NotImplementedException();
+            return db.Articles;
         }
-
-        IEnumerable<Article> IRepository<Article>.Find(Func<Article, bool> predicate)
+        public Article Get(int id)
         {
-            throw new NotImplementedException();
+            return db.Articles.Find(id);
         }
-
-        Article IRepository<Article>.Get(int id)
+        public void Create(Article book)
         {
-            throw new NotImplementedException();
+            db.Articles.Add(book);
         }
-
-        IEnumerable<Article> IRepository<Article>.GetAll()
+        public void Update(Article book)
         {
-            throw new NotImplementedException();
+            db.Entry(book).State = EntityState.Modified;
         }
-
-        void IRepository<Article>.Update(Article item)
+        public IEnumerable<Article> Find(Func<Article, Boolean> predicate)
         {
-            throw new NotImplementedException();
+            return db.Articles.Where(predicate).ToList();
+        }
+        public void Delete(int id)
+        {
+            Article book = db.Articles.Find(id);
+            if (book != null)
+                db.Articles.Remove(book);
         }
     }
 }
