@@ -1,0 +1,14 @@
+C:\Users\Тимофей\source\repos\MyBlog\BlogDAL\obj\Debug\BlogDAL.csprojAssemblyReference.cache
+C:\Users\Тимофей\source\repos\MyBlog\BlogDAL\obj\Debug\BlogDAL.csproj.CoreCompileInputs.cache
+D:\Рома\MVC\MyBlog\BlogDAL\obj\Debug\BlogDAL.csprojAssemblyReference.cache
+D:\Рома\MVC\MyBlog\BlogDAL\obj\Debug\BlogDAL.csproj.CoreCompileInputs.cache
+D:\Рома\MVC\MyBlog\BlogDAL\bin\Debug\BlogDAL.dll.config
+D:\Рома\MVC\MyBlog\BlogDAL\bin\Debug\BlogDAL.dll
+D:\Рома\MVC\MyBlog\BlogDAL\bin\Debug\BlogDAL.pdb
+D:\Рома\MVC\MyBlog\BlogDAL\bin\Debug\EntityFramework.dll
+D:\Рома\MVC\MyBlog\BlogDAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Рома\MVC\MyBlog\BlogDAL\bin\Debug\EntityFramework.xml
+D:\Рома\MVC\MyBlog\BlogDAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Рома\MVC\MyBlog\BlogDAL\obj\Debug\BlogDAL.csproj.CopyComplete
+D:\Рома\MVC\MyBlog\BlogDAL\obj\Debug\BlogDAL.dll
+D:\Рома\MVC\MyBlog\BlogDAL\obj\Debug\BlogDAL.pdb

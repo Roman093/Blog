@@ -1,17 +1,19 @@
 ﻿using BlogDAL.Context;
 using BlogDAL.Entities;
-using BlogDAL.Interface;
+using BlogDAL.Iterface;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BlogDAL.Repository
 {
-    public class PageRepository : IPageRepository
+   public class PageRepository : IPageRepository
     {
         private BlogContext db;
         private ArticleRepository articleRepository;
-        private CommentRepository commentRepository;
+        private AuthorRepository authorRepository;
 
         public PageRepository(string connectionString)
         {
@@ -27,13 +29,13 @@ namespace BlogDAL.Repository
             }
         }
 
-        public IRepository<Comment> Comments
+        public IRepository<Author> Authors
         {
             get
             {
-                if (commentRepository == null)
-                    commentRepository = new CommentRepository(db);
-                return commentRepository;
+                if (authorRepository == null)
+                    authorRepository = new AuthorRepository(db);
+                return authorRepository;
             }
         }
 

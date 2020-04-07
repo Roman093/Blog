@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BlogBL.BLModels
 {
@@ -10,7 +12,6 @@ namespace BlogBL.BLModels
         public string Title { get; set; }
         public string SubTitle { get; set; }
         public string Body { get; set; }
-        public DateTime Date { get; set; }
-       
+        public DateTime? Date { get; set; }
     }
 }

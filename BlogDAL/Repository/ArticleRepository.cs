@@ -1,15 +1,15 @@
-﻿using BlogDAL.Entities;
-using BlogDAL.Interface;
+﻿using BlogDAL.Context;
+using BlogDAL.Entities;
 using System;
-using System.Data.Entity;
 using System.Collections.Generic;
-using System.Text;
-using BlogDAL.Context;
+using System.Data.Entity;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BlogDAL.Repository
 {
-    public class ArticleRepository : IRepository<Article>
+   public class ArticleRepository : IRepository<Article>
     {
         private BlogContext db;
         public ArticleRepository(BlogContext context)
@@ -24,13 +24,13 @@ namespace BlogDAL.Repository
         {
             return db.Articles.Find(id);
         }
-        public void Create(Article book)
+        public void Create(Article page)
         {
-            db.Articles.Add(book);
+            db.Articles.Add(page);
         }
-        public void Update(Article book)
+        public void Update(Article page)
         {
-            db.Entry(book).State = EntityState.Modified;
+            db.Entry(page).State = EntityState.Modified;
         }
         public IEnumerable<Article> Find(Func<Article, Boolean> predicate)
         {
@@ -38,9 +38,9 @@ namespace BlogDAL.Repository
         }
         public void Delete(int id)
         {
-            Article book = db.Articles.Find(id);
-            if (book != null)
-                db.Articles.Remove(book);
+            Article page = db.Articles.Find(id);
+            if (page != null)
+                db.Articles.Remove(page);
         }
     }
 }
