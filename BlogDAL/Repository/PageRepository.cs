@@ -63,5 +63,10 @@ namespace BlogDAL.Repository
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        public IEnumerable<Author> GetAuthors()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

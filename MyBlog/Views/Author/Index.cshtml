@@ -1,8 +1,51 @@
-﻿
+﻿@model IEnumerable<MyBlog.Models.ArticleModel>
+
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Article";
 }
 
-<h2>Index</h2>
 
+<h2>Blog</h2>
+<img src="https://reklamonstr.com/wp-content/uploads/Blog-750x422.jpg" width="750" height="422" alt="Logo">
+
+<style>
+    .container {
+        width: 100%;
+        max-width: 1024px;
+        padding: 0 15px;
+        margin: 0 auto;
+    }
+</style>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Body)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                @Html.ActionLink("Author", "Create", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BlogBL.BLModels;
 using BlogBL.Interface;
+using BlogBL.Service;
 using MyBlog.Models;
 using System;
 using System.Collections.Generic;
@@ -23,24 +24,64 @@ namespace MyBlog.Controllers
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ArticleBL, ArticleModel>()).CreateMapper();
             var articles = mapper.Map<IEnumerable<ArticleBL>, List<ArticleModel>>(articleBLs);
             return View(articles);
+        //}
+        //public ActionResult Details(int id)
+        //{
+        //    var mapper = new MapperConfiguration(cfg => cfg.FirstOrDefault<ArticleBL, ArticleModel>()).CreateMapper();
+        //    var articles = mapper.Map<IEnumerable<ArticleBL>, List<ArticleModel>>(articleBLs);
+
+        //    return View(author);
         }
         public ActionResult Create(int? id)
         {
+            try
+            {
+                ArticleBL article = authorService.GetArticle(id);
+                var author = new AuthorModel { ArticleId = article.Id };
 
-            ArticleBL article = authorService.GetArticle(id);
-            var author = new AuthorModel { ArticleId = article.Id };
-
-            return View(author);
+                return View(author);
+            }
+            catch (ValidationException ex)
+            {
+                return Content(ex.Message);
+            }
         }
         [HttpPost]
         public ActionResult Create(AuthorModel author)
         {
-
-            var authorBL = new AuthorBL { ArticleId = author.ArticleId, FirstName = author.FirstName, LastName = author.LastName, NickName = author.NickName };
-            authorService.Create(authorBL);
-            //return Content("<h2>Completed</h2>");
-
+            try
+            {
+                var authorBL = new AuthorBL { ArticleId = author.ArticleId, FirstName = author.FirstName, LastName = author.LastName, NickName = author.NickName };
+                authorService.Create(authorBL);
+                return Content("<h2>Completed</h2>");
+            }
+            catch (ValidationException ex)
+            {
+                ModelState.AddModelError(ex.Property, ex.Message);
+            }
             return View(author);
+        }
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: Author/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            return RedirectToAction("Index");
+        }
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: Article/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            return RedirectToAction("Index");
         }
         protected override void Dispose(bool disposing)
         {

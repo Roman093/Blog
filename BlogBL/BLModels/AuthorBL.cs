@@ -13,5 +13,6 @@ namespace BlogBL.BLModels
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string NickName { get; set; }
+        public List<ArticleBL> ArticleBL { get; set; }
     }
 }

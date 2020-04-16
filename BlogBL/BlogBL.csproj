@@ -49,10 +49,14 @@
   <ItemGroup>
     <Compile Include="BLModels\ArticleBL.cs" />
     <Compile Include="BLModels\AuthorBL.cs" />
+    <Compile Include="Interface\IArticleService.cs" />
     <Compile Include="Interface\IAuthorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ArticleService.cs" />
     <Compile Include="Service\AuthorService.cs" />
+    <Compile Include="Service\MapperService.cs" />
     <Compile Include="Service\ServiceModule.cs" />
+    <Compile Include="Service\ValidationException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlogDAL\BlogDAL.csproj">

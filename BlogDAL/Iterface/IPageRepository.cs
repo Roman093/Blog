@@ -12,6 +12,7 @@ namespace BlogDAL.Iterface
     {
         IRepository<Article> Articles { get; }
         IRepository<Author> Authors { get; }
+        IEnumerable<Author> GetAuthors();
         void Save();
     }
 }

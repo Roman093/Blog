@@ -18,12 +18,15 @@ namespace BlogBL.Service
         public AuthorService(IPageRepository uow)
         {
             Database = uow;
+
         }
         public void Create (AuthorBL authorBL)
         {
             Article article = Database.Articles.Get(authorBL.ArticleId);
 
-           
+            if (article == null)
+                throw new ValidationException("no article", "");
+
             Author author = new Author
             {
                 
@@ -35,18 +38,27 @@ namespace BlogBL.Service
             Database.Authors.Create(author);
             Database.Save();
         }
-        public IEnumerable<ArticleBL> GetArticle()
+        public IEnumerable<AuthorBL> GetAuthor()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Article, ArticleBL>()).CreateMapper();
-            return mapper.Map<IEnumerable<Article>, List<ArticleBL>>(Database.Articles.GetAll());
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Author, AuthorBL>()).CreateMapper();
+            var authors = Database.Authors.GetAll();
+            return mapper.Map<List<AuthorBL>>(authors);
         }
-        public ArticleBL GetArticle(int? id)
+
+
+                public IEnumerable<ArticleBL> GetArticle()
+                {
+                    var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Article, ArticleBL>()).CreateMapper();
+                    var articles = Database.Articles.GetAll();
+                    return mapper.Map<List<ArticleBL>>(articles);
+                }
+                public ArticleBL GetArticle(int? id)
         {
-            //if (id == null)
-            //    throw new ValidationException("Не установлено id телефона", "");
+            if (id == null)
+                throw new ValidationException("no id article", "");
             var article = Database.Articles.Get(id.Value);
-            //if (article == null)
-            //    throw new ValidationException("Телефон не найден", "");
+            if (article == null)
+                throw new ValidationException("no article", "");
             return new ArticleBL { Title = article.Title, SubTitle = article.SubTitle, Body = article.Body, Id = article.Id };
 
         }
